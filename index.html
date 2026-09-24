@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>𝗽𝗶𝗼𝗻𝗶𝘀𝘁</title>
+<meta name="theme-color" content="#2b2b2b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --violet:#8686e2;--violet-d:#6161ac;--ink:#2b2b2b;--lime:#aacb36;--mist:#f3f5ff;
+  --bg-a:#7373d6;--bg-b:#4d4d9a;--glass:rgba(43,43,43,.58);--line:rgba(243,245,255,.14);
+  --muted:rgba(243,245,255,.82);
+  --ease:cubic-bezier(.23,1,.32,1);--spring:cubic-bezier(.34,1.56,.64,1);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg-a:#5a5aba;--bg-b:#26264f}}
+:root[data-theme="dark"]{--bg-a:#5a5aba;--bg-b:#26264f}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:inherit;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100%;background:linear-gradient(165deg,var(--bg-a),var(--bg-b));color:var(--mist);
+  font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* balloons */
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(22px);opacity:.8;
+  background:radial-gradient(circle at 35% 28%,#dcdcff,#9e9eee 45%,#6161ac 100%);
+  animation:float var(--d) ease-in-out infinite alternate}
+.blob:nth-child(1){width:70vw;height:70vw;left:-25vw;top:8vh;--d:9s;--x:9vw;--y:-4vh}
+.blob:nth-child(2){width:62vw;height:62vw;right:-22vw;top:-8vh;--d:11s;--x:-8vw;--y:6vh}
+.blob:nth-child(3){width:80vw;height:80vw;left:12vw;bottom:-30vw;--d:13s;--x:-10vw;--y:-6vh}
+.blob:nth-child(4){width:38vw;height:38vw;right:-6vw;top:46vh;--d:8s;--x:-6vw;--y:-8vh;opacity:.6}
+@keyframes float{to{transform:translate(var(--x),var(--y)) scale(1.08)}}
+
+/* header pill */
+header{position:fixed;left:12px;right:12px;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:30;height:60px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 10px 0 20px;border-radius:32px;
+  background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);
+  animation:drop .8s var(--ease) both}
+@keyframes drop{from{opacity:0;transform:translateY(-24px) scale(.96)}}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px}
+.logo i{font-style:normal;color:var(--lime)}
+.logo b{display:inline-block;width:11px;height:3px;border-radius:2px;background:var(--lime);animation:blink 1.1s steps(2) infinite;align-self:flex-end;margin:0 0 9px -6px}
+@keyframes blink{50%{opacity:0}}
+.burger{width:44px;height:44px;border-radius:50%;background:rgba(243,245,255,.1);position:relative;transition:transform .25s var(--spring),background .25s}
+.burger:active{transform:scale(.9)}
+.burger span{position:absolute;left:13px;width:18px;height:2px;border-radius:2px;background:var(--mist);transition:transform .4s var(--ease),top .4s var(--ease),opacity .2s}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:26px}
+.menu-open .burger span:nth-child(1){top:21px;transform:rotate(45deg)}
+.menu-open .burger span:nth-child(2){opacity:0}
+.menu-open .burger span:nth-child(3){top:21px;transform:rotate(-45deg)}
+
+/* hero */
+main{position:relative;z-index:1;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:96px 24px 40px}
+.rise{animation:rise .9s var(--ease) both;animation-delay:calc(var(--i,0)*90ms + 150ms)}
+@keyframes rise{from{opacity:0;transform:translateY(28px);filter:blur(6px)}}
+.pill{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:30px;
+  background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);font-weight:600;font-size:15px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 0 rgba(170,203,54,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%,100%{box-shadow:0 0 0 12px rgba(170,203,54,0)}}
+h1{font-size:clamp(34px,10.4vw,46px);line-height:1.12;font-weight:800;margin:26px 0 20px;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--lime)}
+.wave{display:inline-block;transform-origin:70% 80%;animation:wave 2.6s ease-in-out 1.2s infinite}
+@keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(16deg)}20%,40%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
+.lead{font-size:18px;line-height:1.6;color:var(--muted);margin:0 0 34px;max-width:34ch}
+.btns{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:12px;height:60px;padding:0 28px;border-radius:30px;
+  font-weight:800;font-size:18px;transition:transform .3s var(--spring),box-shadow .3s var(--ease)}
+.btn:active{transform:scale(.95)}
+.btn.main{background:var(--lime);color:var(--ink);box-shadow:0 12px 32px -10px rgba(170,203,54,.7)}
+.btn.main::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-120%);animation:shine 4.5s 2s infinite}
+@keyframes shine{30%,100%{transform:translateX(120%)}}
+.btn.alt{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+@media (hover:hover){.btn:hover{transform:translateY(-3px)}}
+
+/* menu overlay */
+.menu{position:fixed;inset:0;z-index:27;background:var(--ink);padding:110px 28px 40px;display:flex;flex-direction:column;justify-content:center;gap:8px;
+  clip-path:circle(0 at calc(100% - 42px) 42px);transition:clip-path .7s var(--ease);visibility:hidden}
+.menu-open .menu{clip-path:circle(150% at calc(100% - 42px) 42px);visibility:visible}
+.menu a,.menu button{display:block;text-align:left;font-size:34px;font-weight:800;padding:10px 0;opacity:0;transform:translateX(-24px);transition:opacity .4s,transform .5s var(--ease),color .2s}
+.menu-open .menu a,.menu-open .menu button{opacity:1;transform:none;transition-delay:calc(var(--i)*70ms + 220ms)}
+.menu a:active,.menu button:active{color:var(--lime)}
+
+/* sheet */
+.sheet{position:fixed;inset:0;z-index:25;background:linear-gradient(165deg,var(--bg-a),var(--bg-b));overflow-y:auto;overscroll-behavior:contain;
+  padding:calc(env(safe-area-inset-top,0px) + 88px) 16px calc(env(safe-area-inset-bottom,0px) + 32px);
+  transform:translateY(100%);border-radius:36px 36px 0 0;visibility:hidden;transition:transform .6s var(--ease),visibility 0s .6s}
+.sheet.open{transform:none;visibility:visible;transition:transform .6s var(--ease)}
+.bar{display:flex;align-items:center;gap:12px;height:56px;margin-bottom:16px}
+.tabs[hidden]{display:none}
+.back{width:44px;height:44px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;transition:transform .3s var(--spring)}
+.back:active{transform:scale(.88)}
+.bar h2{margin:0;font-size:20px;font-weight:800}
+.tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:5px;border-radius:30px;background:var(--glass);border:1px solid var(--line);margin-bottom:26px}
+.tabs::before{content:"";position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:26px;background:var(--violet);
+  transition:transform .5s var(--ease)}
+.tabs[data-t="1"]::before{transform:translateX(100%)}
+.tabs button{position:relative;height:48px;font-weight:800;font-size:16px;border-radius:26px;transition:color .3s}
+.tabs button[aria-selected="false"]{color:var(--muted)}
+.tap{width:100%;text-align:left;transition:transform .3s var(--spring)}.tap:active{transform:scale(.97)}
+.chev{margin-left:auto;opacity:.7}
+.note{padding:14px 16px;border-radius:20px;background:rgba(170,203,54,.16);border:1px solid rgba(170,203,54,.5);font-weight:600;font-size:15px;line-height:1.5}
+.big .ico{width:64px;height:64px;border-radius:24px}.big h4{font-size:24px}.big p{font-size:16px;line-height:1.65}
+.big .get{height:56px;font-size:17px;padding:0 28px}
+h3{margin:26px 4px 14px;font-size:15px;font-weight:600;color:var(--muted)}
+.card{display:flex;flex-direction:column;gap:14px;padding:20px;margin-bottom:14px;border-radius:28px;background:var(--glass);
+  border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);animation:pop .6s var(--ease) both;animation-delay:calc(var(--i)*80ms)}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.95)}}
+.row{display:flex;align-items:center;gap:14px}
+.ico{width:52px;height:52px;border-radius:20px;display:grid;place-items:center;background:var(--violet);flex:none}
+.card h4{margin:0;font-size:18px;font-weight:800}
+.card p{margin:4px 0 0;font-size:15px;line-height:1.5;color:var(--muted)}
+.get{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:24px;background:var(--lime);color:var(--ink);font-weight:800;transition:transform .3s var(--spring)}
+.get:active{transform:scale(.94)}
+.lock{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-radius:24px;background:rgba(243,245,255,.1);color:var(--muted);font-weight:600}
+.prog{height:8px;border-radius:8px;background:rgba(243,245,255,.15);overflow:hidden}
+.prog i{display:block;height:100%;width:var(--p);border-radius:8px;background:var(--lime);transform-origin:left;animation:fill 1.2s .3s var(--ease) both}
+@keyframes fill{from{transform:scaleX(0)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div></div>
+
+<header>
+  <a class="logo" id="logo" href="#" aria-label="На главную"><i>&gt;</i><b></b>𝗽𝗶𝗼𝗻𝗶𝘀𝘁</a>
+  <button class="burger" id="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Меню">
+  <button style="--i:0" data-go="home">Главная</button>
+  <button style="--i:1" data-go="0">My projects</button>
+  <button style="--i:2" data-go="1">My music</button>
+  <a style="--i:3" href="https://t.me/AnonkaEz_bot?start=start_5162802913" target="_blank" rel="noopener">Связаться со мной</a>
+</nav>
+
+<main id="home">
+  <div class="pill rise" style="--i:0"><span class="dot"></span>𝗽𝗶𝗼𝗻𝗶𝘀𝘁</div>
+  <h1 class="rise" style="--i:1">Привет, я 𝗽𝗶𝗼𝗻𝗶𝘀𝘁 <span class="wave">👋</span><br><em>junior developer</em> &amp; beatmaker</h1>
+  <p class="lead rise" style="--i:2">Разрабатываю сайты, программы и ботов. Создаю проекты на python &amp; bat. Учусь битмейкингу в FL Studio.</p>
+  <div class="btns">
+    <button class="btn main rise" style="--i:3" id="open"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="m10 11-2 2 2 2m4-4 2 2-2 2"/></svg>Смотреть проекты</button>
+    <a class="btn alt rise" style="--i:4" href="https://t.me/AnonkaEz_bot?start=start_5162802913" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>Связаться со мной</a>
+  </div>
+</main>
+
+<section class="sheet" id="sheet" inert aria-label="Проекты">
+  <div class="bar"><button class="back" id="back" aria-label="Назад"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><h2 id="ttl">My projects</h2></div>
+  <div class="tabs" id="tabs" data-t="0" role="tablist">
+    <button role="tab" aria-selected="true" data-t="0">My projects</button>
+    <button role="tab" aria-selected="false" data-t="1">Music</button>
+  </div>
+  <div id="list"></div>
+</section>
+
+<script>
+// ✏️ Здесь редактируются проекты: n — название, s — подзаголовок/жанр, d — описание, note — предупреждение, url — ссылка на Google Drive.
+var DATA=[
+ {ready:[{n:"Fsociety Tool",s:"Консольное приложение для Windows",
+   d:"Fsociety Tool — консольное приложение для Windows, выполненное в стиле культового сериала Mr Robot. Программа объединяет несколько инструментов и режимов, включая просмотр сетевой информации, работу с Wi-Fi, IP, шифрование, visual DDOS и различные консольные сценарии, с интерактивным меню и атмосферным оформлением.",
+   note:"!attention! most of the program's functions are visual.",
+   url:"https://drive.google.com/drive/folders/1yP2qYO9QBT221CJMuwPILzGRBYxwCvcN?usp=sharing"}],
+  dev:[{n:"p.s.e.v.d.o.",s:""}]},
+ {ready:[],dev:[{n:"OVERDRIVE",s:"rally house"}]}
+];
+var ICON=["M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z","M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm12-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"];
+var NAMES=["My projects","Music"];
+var I=function(d){return '<svg viewBox="0 0 24 24"><path d="'+d+'"/></svg>'};
+var $=function(i){return document.getElementById(i)};
+var root=document.documentElement,sheet=$("sheet"),list=$("list"),tabs=$("tabs"),menu=$("menu"),burger=$("burger"),main=$("home"),ttl=$("ttl");
+var cur=0,det=null;
+function esc(s){return String(s||"").replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function head(t){return '<h3>'+t+'</h3>'}
+function render(){
+  var s=DATA[cur],h="",n=0;
+  tabs.hidden=det!==null;
+  if(det!==null){
+    var x=s.ready[det];ttl.textContent=x.n;
+    h='<article class="card big" style="--i:0"><div class="row"><div class="ico">'+I(ICON[cur])+'</div><div><h4>'+esc(x.n)+'</h4>'+(x.s?'<p>'+esc(x.s)+'</p>':'')+'</div></div>'+
+      (x.d?'<p>'+esc(x.d)+'</p>':'')+(x.note?'<div class="note">'+esc(x.note)+'</div>':'')+
+      '<a class="get" href="'+esc(x.url)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>Скачать</a></article>';
+  }else{
+    ttl.textContent=NAMES[cur];
+    if(s.ready.length){h+=head("Готово");
+      s.ready.forEach(function(x,i){h+='<button class="card tap" data-i="'+i+'" style="--i:'+(n++)+'"><div class="row"><div class="ico">'+I(ICON[cur])+'</div><div><h4>'+esc(x.n)+'</h4>'+(x.s?'<p>'+esc(x.s)+'</p>':'')+'</div><svg class="chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div></button>'})}
+    if(s.dev.length){h+=head("В разработке");
+      s.dev.forEach(function(x){h+='<article class="card" style="--i:'+(n++)+'"><div class="row"><div class="ico" style="background:var(--violet-d)">'+I(ICON[cur])+'</div><div><h4>'+esc(x.n)+'</h4>'+(x.s?'<p>'+esc(x.s)+'</p>':'')+'</div></div><span class="lock">🔒 В разработке</span></article>'})}
+  }
+  list.innerHTML=h;sheet.scrollTop=0;
+}
+function tab(t){cur=t;det=null;tabs.dataset.t=t;[].forEach.call(tabs.children,function(b,i){b.setAttribute("aria-selected",i==t)});render()}
+function openSheet(t){closeMenu();tab(t);sheet.inert=false;sheet.classList.add("open");main.inert=true}
+function closeSheet(){sheet.classList.remove("open");sheet.inert=true;main.inert=false;det=null}
+function closeMenu(){root.classList.remove("menu-open");burger.setAttribute("aria-expanded","false")}
+function goHome(){closeMenu();closeSheet();window.scrollTo({top:0,behavior:"smooth"})}
+burger.onclick=function(){var o=root.classList.toggle("menu-open");burger.setAttribute("aria-expanded",o)};
+$("logo").onclick=function(e){e.preventDefault();goHome()};
+$("open").onclick=function(){openSheet(0)};
+$("back").onclick=function(){if(det!==null){det=null;render()}else closeSheet()};
+tabs.onclick=function(e){var b=e.target.closest("button");if(b)tab(+b.dataset.t)};
+list.onclick=function(e){var c=e.target.closest(".tap");if(c){det=+c.dataset.i;render()}};
+menu.onclick=function(e){var b=e.target.closest("button");if(!b)return;if(b.dataset.go==="home")goHome();else openSheet(+b.dataset.go)};
+document.addEventListener("keydown",function(e){if(e.key==="Escape")goHome()});
+render();
+</script>
+</body>
+</html>
