@@ -66,6 +66,7 @@ main{position:relative;z-index:1;min-height:100dvh;display:flex;flex-direction:c
 @keyframes pulse{70%,100%{box-shadow:0 0 0 12px rgba(170,203,54,0)}}
 h1{font-size:clamp(34px,10.4vw,46px);line-height:1.12;font-weight:800;margin:26px 0 20px;letter-spacing:-.02em}
 h1 em{font-style:normal;color:var(--lime)}
+.nowrap{white-space:nowrap}
 .wave{display:inline-block;transform-origin:70% 80%;animation:wave 2.6s ease-in-out 1.2s infinite}
 @keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(16deg)}20%,40%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
 .lead{font-size:18px;line-height:1.6;color:var(--muted);margin:0 0 34px;max-width:34ch}
@@ -93,16 +94,9 @@ h1 em{font-style:normal;color:var(--lime)}
   transform:translateY(100%);border-radius:36px 36px 0 0;visibility:hidden;transition:transform .6s var(--ease),visibility 0s .6s}
 .sheet.open{transform:none;visibility:visible;transition:transform .6s var(--ease)}
 .bar{display:flex;align-items:center;gap:12px;height:56px;margin-bottom:16px}
-.tabs[hidden]{display:none}
 .back{width:44px;height:44px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;transition:transform .3s var(--spring)}
 .back:active{transform:scale(.88)}
 .bar h2{margin:0;font-size:20px;font-weight:800}
-.tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:5px;border-radius:30px;background:var(--glass);border:1px solid var(--line);margin-bottom:26px}
-.tabs::before{content:"";position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:26px;background:var(--violet);
-  transition:transform .5s var(--ease)}
-.tabs[data-t="1"]::before{transform:translateX(100%)}
-.tabs button{position:relative;height:48px;font-weight:800;font-size:16px;border-radius:26px;transition:color .3s}
-.tabs button[aria-selected="false"]{color:var(--muted)}
 .tap{width:100%;text-align:left;transition:transform .3s var(--spring)}.tap:active{transform:scale(.97)}
 .chev{margin-left:auto;opacity:.7}
 .note{padding:14px 16px;border-radius:20px;background:rgba(170,203,54,.16);border:1px solid rgba(170,203,54,.5);font-weight:600;font-size:15px;line-height:1.5}
@@ -122,6 +116,15 @@ h3{margin:26px 4px 14px;font-size:15px;font-weight:600;color:var(--muted)}
 .prog{height:8px;border-radius:8px;background:rgba(243,245,255,.15);overflow:hidden}
 .prog i{display:block;height:100%;width:var(--p);border-radius:8px;background:var(--lime);transform-origin:left;animation:fill 1.2s .3s var(--ease) both}
 @keyframes fill{from{transform:scaleX(0)}}
+.lead2{font-size:16px;line-height:1.55;color:var(--muted);margin:0 0 24px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.about-card{grid-column:span 1;padding:18px 16px;border-radius:26px;background:var(--glass);border:1px solid var(--line);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);animation:pop .6s var(--ease) both;animation-delay:calc(var(--i)*90ms);min-height:150px}
+.about-card .em{font-size:26px;line-height:1;margin-bottom:10px;display:block}
+.about-card h4{margin:0 0 10px;font-size:15px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:var(--lime)}
+.about-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.about-card li{font-size:15px;font-weight:600;color:var(--mist)}
+.about-card .fave{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:0 0 4px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -135,77 +138,88 @@ h3{margin:26px 4px 14px;font-size:15px;font-weight:600;color:var(--muted)}
 
 <nav class="menu" id="menu" aria-label="Меню">
   <button style="--i:0" data-go="home">Главная</button>
-  <button style="--i:1" data-go="0">My projects</button>
-  <button style="--i:2" data-go="1">My music</button>
+  <button style="--i:1" data-go="about">Обо мне</button>
+  <button style="--i:2" data-go="projects">My projects</button>
   <a style="--i:3" href="https://t.me/AnonkaEz_bot?start=start_5162802913" target="_blank" rel="noopener">Связаться со мной</a>
 </nav>
 
 <main id="home">
   <div class="pill rise" style="--i:0"><span class="dot"></span>𝗽𝗶𝗼𝗻𝗶𝘀𝘁</div>
-  <h1 class="rise" style="--i:1">Привет, я 𝗽𝗶𝗼𝗻𝗶𝘀𝘁 <span class="wave">👋</span><br><em>junior developer</em> &amp; beatmaker</h1>
-  <p class="lead rise" style="--i:2">Разрабатываю сайты, программы и ботов. Создаю проекты на python &amp; bat. Учусь битмейкингу в FL Studio.</p>
+  <h1 class="rise" style="--i:1"><span class="nowrap">Привет, я 𝗽𝗶𝗼𝗻𝗶𝘀𝘁 <span class="wave">👋</span></span><br><em>Digital Creator</em> &amp; Explorer</h1>
+  <p class="lead rise" style="--i:2">welcome to my corner of the internet.</p>
   <div class="btns">
     <button class="btn main rise" style="--i:3" id="open"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="m10 11-2 2 2 2m4-4 2 2-2 2"/></svg>Смотреть проекты</button>
-    <a class="btn alt rise" style="--i:4" href="https://t.me/AnonkaEz_bot?start=start_5162802913" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>Связаться со мной</a>
+    <button class="btn alt rise" style="--i:4" id="openAbout"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>Обо мне</button>
+    <a class="btn alt rise" style="--i:5" href="https://t.me/AnonkaEz_bot?start=start_5162802913" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>Связаться со мной</a>
   </div>
 </main>
 
 <section class="sheet" id="sheet" inert aria-label="Проекты">
   <div class="bar"><button class="back" id="back" aria-label="Назад"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><h2 id="ttl">My projects</h2></div>
-  <div class="tabs" id="tabs" data-t="0" role="tablist">
-    <button role="tab" aria-selected="true" data-t="0">My projects</button>
-    <button role="tab" aria-selected="false" data-t="1">Music</button>
-  </div>
   <div id="list"></div>
+</section>
+
+<section class="sheet" id="aboutSheet" inert aria-label="Обо мне">
+  <div class="bar"><button class="back" id="backAbout" aria-label="Назад"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><h2>Who is 𝗽𝗶𝗼𝗻𝗶𝘀𝘁?</h2></div>
+  <p class="lead2 rise" style="--i:0">A few things about me.</p>
+  <div class="grid2">
+    <div class="about-card rise" style="--i:1"><span class="em">💻</span><h4>Creative</h4><ul><li>Python & Bat</li><li>Music</li><li>Websites</li></ul></div>
+    <div class="about-card rise" style="--i:2"><span class="em">🧠</span><h4>Interests</h4><ul><li>Development</li><li>Vibecoding</li><li>AI</li></ul></div>
+    <div class="about-card rise" style="--i:3"><span class="em">🎮</span><h4>Games</h4><ul><li>Fortnite</li><li>Poppy Playtime</li><li>CS2</li></ul></div>
+    <div class="about-card rise" style="--i:4"><span class="em">🎵</span><h4>Music</h4><p class="fave">Favorite artist</p><ul><li>MORGENSHTERN</li></ul></div>
+  </div>
 </section>
 
 <script>
 // ✏️ Здесь редактируются проекты: n — название, s — подзаголовок/жанр, d — описание, note — предупреждение, url — ссылка на Google Drive.
-var DATA=[
- {ready:[{n:"Fsociety Tool",s:"Консольное приложение для Windows",
-   d:"Fsociety Tool — консольное приложение для Windows, выполненное в стиле культового сериала Mr Robot. Программа объединяет несколько инструментов и режимов, включая просмотр сетевой информации, работу с Wi-Fi, IP, шифрование, visual DDOS и различные консольные сценарии, с интерактивным меню и атмосферным оформлением.",
-   note:"!attention! most of the program's functions are visual.",
-   url:"https://drive.google.com/drive/folders/1yP2qYO9QBT221CJMuwPILzGRBYxwCvcN?usp=sharing"}],
-  dev:[{n:"p.s.e.v.d.o.",s:""}]},
- {ready:[],dev:[{n:"OVERDRIVE",s:"rally house"}]}
+// Сюда же со временем добавляй музыку, сайты и всё остальное — раздел один общий.
+var READY=[
+ {n:"Fsociety Tool",s:"Консольное приложение для Windows",
+  d:"Fsociety Tool — консольное приложение для Windows, выполненное в стиле культового сериала Mr Robot. Программа объединяет несколько инструментов и режимов, включая просмотр сетевой информации, работу с Wi-Fi, IP, шифрование, visual DDOS и различные консольные сценарии, с интерактивным меню и атмосферным оформлением.",
+  note:"!attention! most of the program's functions are visual.",
+  url:"https://drive.google.com/drive/folders/1yP2qYO9QBT221CJMuwPILzGRBYxwCvcN?usp=sharing"}
 ];
-var ICON=["M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z","M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm12-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"];
-var NAMES=["My projects","Music"];
+var DEV=[
+ {n:"p.s.e.v.d.o.",s:""},
+ {n:"OVERDRIVE",s:"rally house"}
+];
+var ICON="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z";
 var I=function(d){return '<svg viewBox="0 0 24 24"><path d="'+d+'"/></svg>'};
 var $=function(i){return document.getElementById(i)};
-var root=document.documentElement,sheet=$("sheet"),list=$("list"),tabs=$("tabs"),menu=$("menu"),burger=$("burger"),main=$("home"),ttl=$("ttl");
-var cur=0,det=null;
+var root=document.documentElement,sheet=$("sheet"),list=$("list"),menu=$("menu"),burger=$("burger"),main=$("home"),ttl=$("ttl"),aboutSheet=$("aboutSheet");
+var det=null;
 function esc(s){return String(s||"").replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function head(t){return '<h3>'+t+'</h3>'}
 function render(){
-  var s=DATA[cur],h="",n=0;
-  tabs.hidden=det!==null;
+  var h="",n=0;
   if(det!==null){
-    var x=s.ready[det];ttl.textContent=x.n;
-    h='<article class="card big" style="--i:0"><div class="row"><div class="ico">'+I(ICON[cur])+'</div><div><h4>'+esc(x.n)+'</h4>'+(x.s?'<p>'+esc(x.s)+'</p>':'')+'</div></div>'+
+    var x=READY[det];ttl.textContent=x.n;
+    h='<article class="card big" style="--i:0"><div class="row"><div class="ico">'+I(ICON)+'</div><div><h4>'+esc(x.n)+'</h4>'+(x.s?'<p>'+esc(x.s)+'</p>':'')+'</div></div>'+
       (x.d?'<p>'+esc(x.d)+'</p>':'')+(x.note?'<div class="note">'+esc(x.note)+'</div>':'')+
       '<a class="get" href="'+esc(x.url)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>Скачать</a></article>';
   }else{
-    ttl.textContent=NAMES[cur];
-    if(s.ready.length){h+=head("Готово");
-      s.ready.forEach(function(x,i){h+='<button class="card tap" data-i="'+i+'" style="--i:'+(n++)+'"><div class="row"><div class="ico">'+I(ICON[cur])+'</div><div><h4>'+esc(x.n)+'</h4>'+(x.s?'<p>'+esc(x.s)+'</p>':'')+'</div><svg class="chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div></button>'})}
-    if(s.dev.length){h+=head("В разработке");
-      s.dev.forEach(function(x){h+='<article class="card" style="--i:'+(n++)+'"><div class="row"><div class="ico" style="background:var(--violet-d)">'+I(ICON[cur])+'</div><div><h4>'+esc(x.n)+'</h4>'+(x.s?'<p>'+esc(x.s)+'</p>':'')+'</div></div><span class="lock">🔒 В разработке</span></article>'})}
+    ttl.textContent="My projects";
+    if(READY.length){h+=head("Готово");
+      READY.forEach(function(x,i){h+='<button class="card tap" data-i="'+i+'" style="--i:'+(n++)+'"><div class="row"><div class="ico">'+I(ICON)+'</div><div><h4>'+esc(x.n)+'</h4>'+(x.s?'<p>'+esc(x.s)+'</p>':'')+'</div><svg class="chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div></button>'})}
+    if(DEV.length){h+=head("В разработке");
+      DEV.forEach(function(x){h+='<article class="card" style="--i:'+(n++)+'"><div class="row"><div class="ico" style="background:var(--violet-d)">'+I(ICON)+'</div><div><h4>'+esc(x.n)+'</h4>'+(x.s?'<p>'+esc(x.s)+'</p>':'')+'</div></div><span class="lock">🔒 В разработке</span></article>'})}
   }
   list.innerHTML=h;sheet.scrollTop=0;
 }
-function tab(t){cur=t;det=null;tabs.dataset.t=t;[].forEach.call(tabs.children,function(b,i){b.setAttribute("aria-selected",i==t)});render()}
-function openSheet(t){closeMenu();tab(t);sheet.inert=false;sheet.classList.add("open");main.inert=true}
+function openSheet(){closeMenu();closeAbout();det=null;render();sheet.inert=false;sheet.classList.add("open");main.inert=true}
 function closeSheet(){sheet.classList.remove("open");sheet.inert=true;main.inert=false;det=null}
+function openAbout(){closeMenu();closeSheet();aboutSheet.inert=false;aboutSheet.classList.add("open");aboutSheet.scrollTop=0;main.inert=true}
+function closeAbout(){aboutSheet.classList.remove("open");aboutSheet.inert=true;main.inert=false}
 function closeMenu(){root.classList.remove("menu-open");burger.setAttribute("aria-expanded","false")}
-function goHome(){closeMenu();closeSheet();window.scrollTo({top:0,behavior:"smooth"})}
+function goHome(){closeMenu();closeSheet();closeAbout();window.scrollTo({top:0,behavior:"smooth"})}
 burger.onclick=function(){var o=root.classList.toggle("menu-open");burger.setAttribute("aria-expanded",o)};
 $("logo").onclick=function(e){e.preventDefault();goHome()};
-$("open").onclick=function(){openSheet(0)};
+$("open").onclick=openSheet;
+$("openAbout").onclick=openAbout;
 $("back").onclick=function(){if(det!==null){det=null;render()}else closeSheet()};
-tabs.onclick=function(e){var b=e.target.closest("button");if(b)tab(+b.dataset.t)};
+$("backAbout").onclick=closeAbout;
 list.onclick=function(e){var c=e.target.closest(".tap");if(c){det=+c.dataset.i;render()}};
-menu.onclick=function(e){var b=e.target.closest("button");if(!b)return;if(b.dataset.go==="home")goHome();else openSheet(+b.dataset.go)};
+menu.onclick=function(e){var b=e.target.closest("button");if(!b)return;if(b.dataset.go==="home")goHome();else if(b.dataset.go==="about")openAbout();else openSheet()};
 document.addEventListener("keydown",function(e){if(e.key==="Escape")goHome()});
 render();
 </script>
